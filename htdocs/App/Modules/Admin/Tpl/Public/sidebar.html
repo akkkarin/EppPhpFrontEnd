@@ -1,0 +1,55 @@
+<?php
+
+	if($_SESSION[C('USER_GROUP')] == 'visiter'){
+		echo '
+				<div id="sidebar">
+					<div class="block">
+						<h3>Eclipse P2 Space</h3>
+						<ul class="navigation">
+							<li><a href="/Admin/Category/index">Eclipse Category</a></li>
+						</ul>
+						<h3>Repository Space</h3>
+						<ul class="navigation">
+							<li><a href="/Admin/Repository/index">View Repository</a></li>
+						</ul>
+						<h3>Eclipse product line</h3>
+						<ul class="navigation">
+							<li><a href="/Admin/Group/index">View Model Componenets</a></li>
+						</ul>
+						<h3>Build Eclipse++</h3>
+						<ul class="navigation">
+							<li><a href="/Admin/Debug/index">Build</a></li>
+							<li><a href="/Admin/Debug/history">Build History</a></li>
+						</ul>
+					</div>
+				</div>';
+	}else{
+		echo '
+			<div id="sidebar">
+				<div class="block">
+					<h3>Eclipse P2 Space</h3>
+					<ul class="navigation">
+						<li><a href="/Admin/Category/index">Eclipse Category</a></li>
+						<li><a href="/Admin/Feature/index">Eclipse Feature</a></li>
+					</ul>
+					<h3>Repository Space</h3>
+					<ul class="navigation">
+						<li><a href="/Admin/Repository/index">View Repository</a></li>
+						<li><a href="/Admin/Repository/add">Add Repository</a></li>
+					</ul>
+					<h3>Eclipse product line</h3>
+					<ul class="navigation">
+						<li><a href="/Admin/Group/index">View Model Componenets</a></li>
+						<li><a href="/Admin/Group/update">Update a Model</a></li>
+						<li><a href="/Admin/Group/add">Import a new Model</a></li>
+					</ul>
+					<h3>Build Eclipse++</h3>
+					<ul class="navigation">
+						<li><a href="/Admin/Debug/index">Build</a></li>
+						<li><a href="/Admin/Debug/history">Build History</a></li>
+					</ul>
+				</div>
+			</div>';
+
+	}
+?>

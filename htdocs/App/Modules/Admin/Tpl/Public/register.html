@@ -1,0 +1,121 @@
+<include file='Public:header' />
+
+    <div id="wrapper" class="wat-cf">
+     <div id="main">
+        <div class="block" id="block-tables">
+            <div class="content">
+                <h2 class="title">New Account</h2>
+                <div class="inner">
+
+  				<form id='form1' action="/Admin/Public/doRegister" method="post">           
+				<table>
+					<tr>
+						<td colspan="2"><h3>Information d'accès</h3></td>
+					</tr>
+                    <tr>
+                        <td class="tar"><h4>*{$Think.lang.account}: &nbsp;&nbsp;<h4></td>
+                        <td><input type="text" class="input02" name='account' id='account'  /></td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>*{$Think.lang.password}: &nbsp;&nbsp;</h4></td>
+                        <td><input type="password" class="input02" name='password' /></td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>*{$Think.lang.email}: &nbsp;&nbsp;</h4></td>
+                        <td><input type="text" class="input02" name='email' /></td>
+                    </tr>
+					<tr>
+						<td colspan="2">&nbsp;&nbsp; </td>
+					<tr>
+						<td colspan="2"><h3>Informations personnels</h3></td>
+					</tr>
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.firstname}: &nbsp;&nbsp;</h4></td>
+                        <td><input type="text" class="input02" name='firstname'/></td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.secondname}: &nbsp;&nbsp;</h4></td>
+                        <td><input type="text" class="input02" name='secondname'/></td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.lastname}: &nbsp;&nbsp;</h4></td>
+                        <td><input type="text" class="input02" name='lastname'/></td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.user_gender}: &nbsp;&nbsp;</h4></td>
+                        <td>
+                            <select name="gender" class="input02">
+								<option value="0">{$Think.lang.female}</option>
+								<option value="1" selected='selected'>{$Think.lang.male}</option>
+							</select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.birthday}: &nbsp;&nbsp;</h4></td>
+                        <td><input id='birthday' name='birthday' type="text"/></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="tar"><h4>{$Think.lang.avatar}: &nbsp;&nbsp;</h4></td>
+                        <td>
+                            <div id="avatarImageDiv" style="width:200px;height:200px;background: #F1F1F1 url(__APP__/Public/images/avatar.jpg) no-repeat center center;  ">
+								
+							</div>
+                        	<input id="uploadAvatar" type="button" value="{$Think.lang.upload_avatar}"/>
+                        	<span>{$Think.lang.avatar_max_size}</span>
+                        	<input id="hidAvatar" name="hidAvatar" type="hidden" /> 
+                        </td>
+                    </tr>
+					<tr class='relation'>
+                        <td class="tar">&nbsp;&nbsp;</td>
+                        <td>
+                        	<input name="relationship" type="hidden" checked="checked" value="1"/>
+							<input name="relationship" type="hidden" value="2"/>
+						</td>
+                    </tr>
+					
+					<tr>
+						<td colspan="2">&nbsp;&nbsp; </td>
+					</tr>
+					
+					<tr>
+						<td colspan="2">&nbsp;&nbsp; </td>
+					<tr>
+                    <tr style="display: none;" id="confirmbutton">
+                        <td colspan="2" class="tac">
+                            <a href="javascript:$('#form1').submit();" class="contactbtn" style="width:250px;" >{$Think.lang.submit}</a>
+                        </td>
+                    </tr>
+                </table>
+            	
+            	<div id="dialog-set-avatar" style="display: none;">
+	            	<script>
+						var thumbPrefix = 'avatar_w200_w200_';
+						var thumbW = 200;
+						var thumbH = 200;
+					</script>
+				    <include file="Public:uploadImg" />
+				</div>
+                <button id="btnSubmit" class="button" type="submit">
+                  <img src="images/icons/key.png" alt="Save" /> Submit
+                </button>
+                <button id="btncreate" class="button" type="button" onclick="cancel()">
+                  <img src="images/icons/key.png" alt="Save" /> Cancel
+                </button> 
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+ </div>
+</div>
+<include file='Public:footer' />
+<script>
+function cancel(){
+  window.location = "/Admin/Public/index";
+} 
+$(function() {
+    $( "#birthday" ).datepicker();
+});
+</script>
