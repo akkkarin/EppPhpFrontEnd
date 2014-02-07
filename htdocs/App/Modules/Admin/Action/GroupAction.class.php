@@ -48,7 +48,7 @@ class GroupAction extends Action {
 		if ($model_id > 0) {
 			$this->doImport($model_path,$model_id);
 			$this->updateDependency($dependency_path,$model_id);
-			$this->success($model_id, "/Admin/Group/index");
+			$this->success('Model added, No.'+$model_id, "/Admin/Group/index");
 		} else {
 			$this->error(L('add_failed'), __URL__+"/add");
 		}
@@ -117,25 +117,29 @@ class GroupAction extends Action {
 	
 	private function importDependency($path,$model){
 		$handle = fopen($path, "r");
-		
+		$i=0;
 		if ($handle) {
-			while (($line = fgets($handle)) !== false) {
+			$query="INSERT INTO eclipseplusplus.epp_dependency VALUES";
+			while (!feof($handle) ) {
+				$line = fgets($handle);
+				
 				if (strpos($line,':=') === false) {
 					$temp = explode(" ", $line);
 					if(sizeof($temp) == 3){
-						$data['feature1_id'] = trim($temp[0]);
-						$data['feature2_id'] = trim($temp[2]);
-						$data['dependency'] = trim($temp[1]);
-						$data['model_id'] = $model;
-						
-						D('Dependency')->add($data);
+						$feature1_id = trim($temp[0]);
+						$feature2_id = trim($temp[2]);
+						$dependency = trim($temp[1]);
+
+						$query .= "('$model','$feature1_id','$feature2_id','$dependency'),";
 					}
-				}
-			}
+				} 
+			}	
+			$query = substr($query,0,strlen($query)-1);					
+			M()->query($query);
 		} else {
 			echo "Not such dependency file\n";
 		}
-	
+		fclose($handle);
 	}
 	 
 	/**
